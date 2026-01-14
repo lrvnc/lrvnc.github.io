@@ -15,7 +15,7 @@ const InstitutionLogos = () => {
   const marqueeInstitutions = [...institutions, ...institutions, ...institutions];
   
   return (
-    <div className="absolute bottom-8 left-0 w-full py-3">
+    <div className="absolute bottom-6 left-0 w-full py-3">
       
       <style>{`
         @keyframes infinite-scroll {
@@ -46,7 +46,7 @@ const InstitutionLogos = () => {
                   border border-white/60
                   rounded-xl px-5 py-5
                   h-[80px] w-[200px]
-                  lg:h-[92px] md:h-[92px] sm:h-[92px]
+                  lg:h-[90px] md:h-[90px] sm:h-[90px]
                   transition-all duration-100
                   hover:bg-white/90
                   '>

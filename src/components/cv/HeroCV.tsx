@@ -22,15 +22,15 @@ const HeroCV = () => (
         variants={listVariant}
       >
         <motion.div variants={itemVariant} className="mb-6">
-            <div className="w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-gray-700 shadow-lg">
+            <div className="w-44 h-44 sm:h-56 sm:w-56 md:h-64 md:w-64 lg:h-64 lg:w-64 rounded-full overflow-hidden border-4 border-gray-700 shadow-lg">
                 <img src={personImg} alt="Leandro Risso Venâncio" className="w-full h-full object-cover" />
             </div>
         </motion.div>
         
-        <motion.h1 className="text-4xl md:text-6xl font-bold" variants={itemVariant}>Leandro Risso Venâncio</motion.h1>
-        <motion.p className="text-xl md:text-2xl mt-4 text-gray-300" variants={itemVariant}>Joint PhD Student at UQ and UoE</motion.p>
+        <motion.h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-bold" variants={itemVariant}>Leandro Risso Venâncio</motion.h1>
+        <motion.p className="text-lg sm:text-lg md:text-xl lg:text-xl mt-4 text-gray-300" variants={itemVariant}>Joint PhD Student at UQ and UoE</motion.p>
 
-        <motion.p className="mt-4 max-w-xl mx-auto text-gray-400 min-h-[4rem] flex items-center justify-center text-center" variants={itemVariant}>
+        <motion.p className="mt-4 max-w-xl mx-auto text-gray-400 flex items-center justify-center text-center" variants={itemVariant}>
           <Typewriter 
             phrases={[
               "Optical Computing.",
@@ -42,10 +42,10 @@ const HeroCV = () => (
         </motion.p>
         
         <motion.div className="mt-8 flex flex-col sm:flex-row justify-center items-center gap-4" variants={itemVariant}>
-            <Button size="lg" onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })} className="bg-gray-800/60 border border-white/60 hover:bg-gray-800/90 transition-transform duration-200 hover:scale-105">
+            <Button size="lg" onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })} className="w-full bg-gray-800/60 border border-white/60 hover:bg-gray-800/90 transition-transform duration-200 hover:scale-105">
                 <Mail className="mr-2 h-5 w-5" /> Contact Me
             </Button>
-            <Button size="lg" asChild className="bg-gray-800/60 hover:bg-gray-800/90 border border-white/60 transition-transform duration-200 hover:scale-105">
+            <Button size="lg" asChild className="w-full bg-gray-800/60 hover:bg-gray-800/90 border border-white/60 transition-transform duration-200 hover:scale-105">
                 <a href="/pdfs/Leandro_CV_20250615.pdf" download="Leandro_RV.pdf">
                     <Download className="mr-2 h-5 w-5" /> Download CV
                 </a>
