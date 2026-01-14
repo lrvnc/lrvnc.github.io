@@ -8,9 +8,11 @@ import InstitutionLogos from './InstitutionLogos';
 import Typewriter from './Typewriter';
 
 const HeroCV = () => (
-  <section className="relative bg-black text-white py-40 px-4 flex items-center h-screen min-h-[600px]">
+  <section className="relative text-white py-40 px-4 flex items-center h-screen min-h-[600px]">
     <div className="absolute inset-0 w-full h-full bg-black">
-      <img src={placeholderImg} alt="background" className="w-full h-full object-cover opacity-20 animate-bg-pulse" />
+      <img src={placeholderImg} alt="background" className="opacity-40 w-full h-full object-cover" />
+
+      <div className='absolute inset-0 bg-gradient-to-t from-gray-950 to-transparent'></div>
     </div>
     <div className="relative z-10 container mx-auto">
       <motion.div
@@ -40,10 +42,10 @@ const HeroCV = () => (
         </motion.p>
         
         <motion.div className="mt-8 flex flex-col sm:flex-row justify-center items-center gap-4" variants={itemVariant}>
-            <Button size="lg" onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })} className="transition-transform duration-200 hover:scale-105">
+            <Button size="lg" onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })} className="bg-gray-800/60 border border-white/60 hover:bg-gray-800/90 transition-transform duration-200 hover:scale-105">
                 <Mail className="mr-2 h-5 w-5" /> Contact Me
             </Button>
-            <Button size="lg" asChild className="transition-transform duration-200 hover:scale-105">
+            <Button size="lg" asChild className="bg-gray-800/60 hover:bg-gray-800/90 border border-white/60 transition-transform duration-200 hover:scale-105">
                 <a href="/pdfs/Leandro_CV_20250615.pdf" download="Leandro_RV.pdf">
                     <Download className="mr-2 h-5 w-5" /> Download CV
                 </a>

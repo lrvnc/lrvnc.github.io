@@ -16,7 +16,6 @@ const ContactInfo = () => {
     <motion.section
       id="contact"
       className="bg-gradient-to-b from-gray-900 to-black py-20 sm:py-24"
-      variants={sectionVariant}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
@@ -73,7 +72,6 @@ const ContactInfo = () => {
                       rel="noopener noreferrer"
                       className="w-10 h-10 rounded-full bg-gray-700/50 flex items-center justify-center text-gray-300 transition-colors hover:bg-gray-700 hover:text-white"
                       aria-label="LinkedIn"
-                      variants={iconVariant}
                       whileHover={{ scale: 1.15, y: -2 }}
                     >
                       <Linkedin size={20} />
@@ -84,7 +82,6 @@ const ContactInfo = () => {
                       rel="noopener noreferrer"
                       className="w-10 h-10 rounded-full bg-gray-700/50 flex items-center justify-center text-gray-300 transition-colors hover:bg-gray-700 hover:text-white"
                       aria-label="GitHub"
-                      variants={iconVariant}
                       whileHover={{ scale: 1.15, y: -2 }}
                     >
                       <Github size={20} />
@@ -95,7 +92,6 @@ const ContactInfo = () => {
                       rel="noopener noreferrer"
                       className="w-10 h-10 rounded-full bg-gray-700/50 flex items-center justify-center text-gray-300 transition-colors hover:bg-gray-700 hover:text-white"
                       aria-label="ORCID"
-                      variants={iconVariant}
                       whileHover={{ scale: 1.15, y: -2 }}
                     >
                       <PenSquare size={20} />
