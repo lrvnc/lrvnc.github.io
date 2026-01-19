@@ -33,7 +33,7 @@ const Navbar = () => {
         setIsScrolled(false);
       }
 
-      const scrollPosition = window.scrollY + 160; // Offset for navbar height and a bit more
+      const scrollPosition = window.scrollY + 160;
       let currentSection = "";
 
       const sectionIds = [
@@ -102,7 +102,7 @@ const Navbar = () => {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:block">
+          <div className="hidden lg:block md:hidden sm:hidden">
             <NavigationMenu>
               <NavigationMenuList className="gap-x-2">
                 {navItems.map((item) => (
@@ -142,7 +142,7 @@ const Navbar = () => {
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden">
+          <div className="lg:hidden md:block">
             <button
               onClick={toggleMenu}
               className={cn(
@@ -159,7 +159,7 @@ const Navbar = () => {
       {/* Mobile Navigation Menu */}
       <div
         className={cn(
-          "md:hidden transition-all duration-300 overflow-hidden w-full",
+          "transition-all duration-300 overflow-hidden w-full",
           isMenuOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
         )}
       >

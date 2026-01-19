@@ -19,7 +19,7 @@ const AboutMe = () => {
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
     >
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
           <motion.div className="w-full lg:w-1/2" variants={itemVariant}>
             <ElegantCarousel images={aboutMeImages} />
@@ -28,13 +28,13 @@ const AboutMe = () => {
           <motion.div variants={listVariant} className="w-full lg:w-1/2">
             <motion.h2
               variants={itemVariant}
-              className="text-3xl font-bold mb-6 text-gray-900 text-center lg:text-left"
+              className="text-2xl lg:text-3xl md:text-3xl sm:text-3xl xl:text-3xl font-bold mb-6 text-gray-900 text-center lg:text-left"
             >
               About Me
             </motion.h2>
             <motion.p
               variants={itemVariant}
-              className="text-gray-700 leading-relaxed mb-4 text-center lg:text-left"
+              className="text-gray-700 leading-relaxed mb-4 text-justify"
             >
               Hi, and welcome to my personal page! I'm Leandro, originally from
               Limeira — a not-so-small city in the countryside of São Paulo,
@@ -47,7 +47,7 @@ const AboutMe = () => {
             </motion.p>
             <motion.p
               variants={itemVariant}
-              className="text-gray-700 leading-relaxed text-center lg:text-left"
+              className="text-gray-700 leading-relaxed text-justify"
             >
               I love traveling and discovering new places. But more than that, I
               value the connections made along the way — it's the people who
