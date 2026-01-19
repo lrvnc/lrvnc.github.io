@@ -15,7 +15,7 @@ const InstitutionLogos = () => {
   const marqueeInstitutions = [...institutions, ...institutions, ...institutions];
   
   return (
-    <div className="absolute bottom-6 left-0 w-full py-3">
+    <div className="absolute bottom-0 left-0 w-full py-3">
       
       <style>{`
         @keyframes infinite-scroll {
@@ -38,16 +38,15 @@ const InstitutionLogos = () => {
           {marqueeInstitutions.map((name, index) => {
             const logoData = logoMap[name];
             return (
-              <div key={index} className="flex-shrink-0 mx-4 py-1">
+              <div key={index} className="flex-shrink-0  py-1">
                 <motion.div whileHover={{ scale: 1.1, zIndex: 10 }} transition={{ duration: 0.2 }} className='
                   group cursor-pointer
                   relative
                   flex items-center justify-center
-                  border border-white/60
                   rounded-xl px-5 py-5
-                  h-[80px] w-[200px]
+                  h-[60px] w-[200px]
                   lg:h-[90px] md:h-[90px] sm:h-[90px]
-                  transition-all duration-100
+                  transition-all duration-200
                   hover:bg-white/90
                   '>
                   {logoData && logoData.src ? (

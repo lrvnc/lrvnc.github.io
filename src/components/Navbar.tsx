@@ -23,6 +23,8 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
 
+  const showSolidNav = isScrolled || isMenuOpen;
+
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 10) {
@@ -77,8 +79,8 @@ const Navbar = () => {
   return (
     <motion.nav
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 w-full",
-        isScrolled ? "bg-white shadow-sm" : "bg-transparent"
+        "fixed top-0 left-0 right-0 z-50 transition-all duration w-full",
+        showSolidNav ? "bg-white shadow-sm duration-100" : "bg-transparent duration-500"
       )}
       initial={{
         opacity: 1,
@@ -92,8 +94,8 @@ const Navbar = () => {
       <div className="w-full px-4 sm:px-6 lg:px-8 mx-auto">
         <div className="flex items-center justify-between h-16">
           <div className="flex-shrink-0">
-            <Link to="/" className="flex items-center text-xl font-bold">
-              <span className={cn(isScrolled ? "text-gray-800" : "text-white")}>
+            <Link to="/" className="flex items-center text-lg font-bold">
+              <span className={cn(showSolidNav ? "text-gray-800" : "text-white")}>
                 Leandro Risso Venâncio
               </span>
             </Link>
@@ -109,11 +111,11 @@ const Navbar = () => {
                       onClick={() => scrollToSection(item.id)}
                       className={cn(
                         "px-3 py-2 text-sm font-medium rounded-md transition-colors",
-                        isScrolled
+                        showSolidNav
                           ? "text-gray-700 hover:bg-gray-100"
                           : "text-gray-200 hover:bg-white/10",
                         activeSection === item.id &&
-                          (isScrolled ? "bg-gray-200" : "bg-white/20")
+                          (showSolidNav ? "bg-gray-200" : "bg-white/20")
                       )}
                     >
                       {item.label}
@@ -125,7 +127,7 @@ const Navbar = () => {
                     onClick={() => scrollToSection("contact")}
                     className={cn(
                       "px-4 py-2 rounded-md transition-colors text-sm font-medium",
-                      isScrolled
+                      showSolidNav
                         ? "bg-gray-800 text-white hover:bg-gray-900"
                         : "bg-white text-black hover:bg-gray-200",
                       activeSection === "contact" &&
@@ -145,7 +147,7 @@ const Navbar = () => {
               onClick={toggleMenu}
               className={cn(
                 "focus:outline-none",
-                isScrolled ? "text-gray-700" : "text-white"
+                showSolidNav ? "text-gray-700" : "text-white"
               )}
             >
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -163,8 +165,7 @@ const Navbar = () => {
       >
         <div
           className={cn(
-            "px-2 pt-2 pb-3 space-y-1 sm:px-3 shadow-lg",
-            isScrolled ? "bg-white" : "bg-black/80 backdrop-blur-sm"
+            "px-2 pt-2 pb-3 space-y-1 sm:px-3 shadow-lg bg-white",
           )}
         >
           {navItems.map((item) => (
@@ -173,11 +174,11 @@ const Navbar = () => {
               onClick={() => scrollToSection(item.id)}
               className={cn(
                 "block w-full text-left px-3 py-2 rounded-md text-base font-medium",
-                isScrolled
+                showSolidNav
                   ? "text-gray-700 hover:bg-gray-50"
                   : "text-gray-200 hover:bg-white/10",
                 activeSection === item.id &&
-                  (isScrolled ? "bg-gray-100 font-bold" : "")
+                  (showSolidNav ? "bg-gray-100 font-bold" : "")
               )}
             >
               {item.label}
@@ -187,11 +188,11 @@ const Navbar = () => {
             onClick={() => scrollToSection("contact")}
             className={cn(
               "block w-full text-left px-3 py-2 rounded-md text-base font-medium",
-              isScrolled
+              showSolidNav
                 ? "text-gray-700 bg-gray-100 hover:bg-gray-200"
                 : "text-white bg-white/20 hover:bg-white/30",
               activeSection === "contact" &&
-                (isScrolled ? "bg-gray-200 font-bold" : "bg-white/30 font-bold")
+                (showSolidNav ? "bg-gray-200 font-bold" : "bg-white/30 font-bold")
             )}
           >
             Contact Me
