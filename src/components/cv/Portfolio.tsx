@@ -44,8 +44,8 @@ const Portfolio = () => (
     whileInView="visible"
     viewport={{ once: true, amount: 0.2 }}
   >
-    <div className="container mx-auto px-4">
-      <h2 className="text-3xl font-bold text-center mb-12 text-gray-900">
+    <div className="container mx-auto px-6">
+      <h2 className="text-2xl lg:text-3xl md:text-3xl sm:text-3xl xl:text-3xl font-bold text-center mb-12 text-gray-900">
         Projects, Notes & Tutorials
       </h2>
       <motion.div

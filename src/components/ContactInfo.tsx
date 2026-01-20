@@ -20,7 +20,7 @@ const ContactInfo = () => {
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-6 sm:px-6 lg:px-8">
         <motion.div
           className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center"
           variants={listVariant}
@@ -46,9 +46,9 @@ const ContactInfo = () => {
             <Card className="bg-gray-800/50 border border-gray-700 shadow-lg hover:shadow-xl hover:shadow-white/5 rounded-xl overflow-hidden backdrop-blur-sm">
               <CardContent className="p-8">
                 <div className="flex flex-col items-center gap-6 text-center">
-                  <Avatar className="w-24 h-24 border-4 border-gray-700 flex-shrink-0 shadow-lg">
-                    <AvatarImage src={personImg} alt="Leandro Risso Venâncio" />
-                    <AvatarFallback>JD</AvatarFallback>
+                  <Avatar className="w-24 h-24 lg:w-28 lg:h-28 border-4 border-gray-700 flex-shrink-0 shadow-lg">
+                    <AvatarImage src={personImg} className="object-cover w-full h-full" alt="Leandro Risso Venâncio" />
+                    <AvatarFallback>LRV</AvatarFallback>
                   </Avatar>
                   <div>
                     <h3 className="text-2xl font-bold text-white">
