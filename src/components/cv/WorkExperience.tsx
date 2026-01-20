@@ -1,4 +1,4 @@
-import { Briefcase } from "lucide-react";
+import { Briefcase, Calendar } from "lucide-react";
 import { motion } from "framer-motion";
 import {
   sectionVariant,
@@ -54,42 +54,51 @@ const WorkExperience = () => (
     whileInView="visible"
     viewport={{ once: true, amount: 0.2 }}
   >
-    <div className="container mx-auto px-4">
-      <h2 className="text-3xl font-bold text-center mb-12 text-gray-900">
+    <div className="container flex flex-col items-center px-7">
+      <h2 className="text-2xl lg:text-3xl md:text-3xl sm:text-3xl xl:text-3xl font-bold text-center mb-12 text-gray-900">
         Work Experience
       </h2>
-      <div className="max-w-3xl mx-auto">
-        <motion.div
-          className="relative border-l-2 border-gray-200"
-          variants={listVariant}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-        >
-          {workExperienceData.map((job, index) => {
-            const flagData =
-              countryFlags[job.company as keyof typeof countryFlags];
 
-            return (
-              <motion.div
-                key={`${job.company}-${index}`}
-                className="mb-10 ml-6 relative"
-                variants={itemVariant}
-              >
-                <motion.span className="absolute -left-9 top-1 flex h-6 w-6 items-center justify-center rounded-full bg-gray-800 ring-8 ring-white">
-                  <Briefcase className="w-3 h-3 text-white" />
-                </motion.span>
+      <motion.div
+        className="w-full relative max-w-3xl mx-auto border-l-2 border-gray-200"
+        variants={listVariant}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+      >
+        {workExperienceData.map((job, index) => {
+          const flagData =
+            countryFlags[job.company as keyof typeof countryFlags];
 
-                <h3 className="flex items-center mb-1 text-xl font-semibold text-gray-900">
+          return (
+            <motion.div
+              key={`${job.company}-${index}`}
+              className="mb-10 pl-8 relative items-center"
+              variants={itemVariant}
+            >
+              <motion.span className="absolute -left-[17px] top-0 flex items-center justify-center w-8 h-8 bg-gray-800 rounded-full ring-4 ring-gray-50">
+                <Briefcase className="w-4 h-4 text-white" />
+              </motion.span>
+
+              <h3 className="flex items-center min-h-8 text-xl font-semibold text-gray-900">
+                {job.role}
+              </h3>
+
+              <div className="text-base text-justify font-semibold text-gray-600 mb-2">
+                {job.company}
+              </div>
+
+              <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 text-sm text-gray-500 mb-4">
+                <div className="flex items-center gap-1.5 bg-gray-100 px-2 py-1 rounded-md w-fit">
                   {flagData && (
-                    <span className="mr-2 inline-flex items-center gap-1">
+                    <div className="flex items-center gap1.5">
                       {Array.isArray(flagData.flag) ? (
                         flagData.flag.map((src, i) => (
                           <img
                             key={`${src}-${i}`}
                             src={src}
                             alt={flagData.country ?? "Country flag"}
-                            className={flagData.className || "w-6 h-auto"}
+                            className={flagData.className || "w-4 h-auto rounded-[1px]"}
                             loading="lazy"
                           />
                         ))
@@ -97,28 +106,32 @@ const WorkExperience = () => (
                         <img
                           src={flagData.flag}
                           alt={flagData.country ?? "Country flag"}
-                          className={flagData.className || "w-6 h-auto"}
+                          className={flagData.className || "w-4 h-auto rounded-[1px]"}
                           loading="lazy"
                         />
                       )}
-                    </span>
+                    </div>
                   )}
-                  {job.role} at{" "}
-                  <span className="text-gray-600 ml-2">{job.company}</span>
-                </h3>
+                  <span className="text-gray-600 font-medium">
+                    {flagData.country}
+                  </span>
+                </div>
 
-                <time className="block mb-2 text-sm font-normal leading-none text-gray-400">
+                <span className="hidden sm:inline text-gray-300">•</span>
+
+                <time className="font-medium text-gray-500 flex items-center gap-1.5">
+                  <Calendar className="w-3.5 h-3.5 sm:hidden" />
                   {job.period}
                 </time>
+              </div>
 
-                <p className="text-base font-normal text-gray-600">
-                  {job.description}
-                </p>
-              </motion.div>
-            );
-          })}
-        </motion.div>
-      </div>
+              <p className="text-base font-normal text-gray-600 text-justify">
+                {job.description}
+              </p>
+            </motion.div>
+          );
+        })}
+      </motion.div>
     </div>
   </motion.section>
 );

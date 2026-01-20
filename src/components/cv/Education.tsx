@@ -79,8 +79,9 @@ const Education = () => (
       <h2 className="text-2xl lg:text-3xl md:text-3xl sm:text-3xl xl:text-3xl font-bold text-center mb-12 text-gray-900">
         Education
       </h2>
+
       <motion.div
-        className="relative max-w-3xl mx-auto border-l-2 border-gray-200"
+        className="w-full relative max-w-3xl mx-auto border-l-2 border-gray-200"
         variants={listVariant}
         initial="hidden"
         whileInView="visible"

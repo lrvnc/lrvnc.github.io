@@ -91,7 +91,7 @@ const Navbar = () => {
         y: 0,
       }}
     >
-      <div className="w-full px-4 sm:px-6 lg:px-8 mx-auto">
+      <div className="w-full px-6 sm:px-6 lg:px-8 mx-auto">
         <div className="flex items-center justify-between h-16">
           <div className="flex-shrink-0">
             <Link to="/" className="flex items-center text-lg font-bold">
@@ -165,7 +165,7 @@ const Navbar = () => {
       >
         <div
           className={cn(
-            "px-2 pt-2 pb-3 space-y-1 sm:px-3 shadow-lg bg-white",
+            "px-3 pt-2 pb-3 space-y-1 sm:px-3 shadow-lg bg-white",
           )}
         >
           {navItems.map((item) => (
