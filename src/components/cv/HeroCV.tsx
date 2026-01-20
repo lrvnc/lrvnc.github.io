@@ -10,7 +10,7 @@ import Typewriter from './Typewriter';
 const HeroCV = () => (
   <section className="relative text-white flex items-center lg:items-center md:items-center xl:items-center min-h-[100svh]">
     <div className="absolute inset-0 w-full h-full bg-black">
-      <img src={placeholderImg} alt="background" className="opacity-40 w-full h-full object-cover" />
+      <img src={placeholderImg} alt="background" fetchPriority='high' loading='eager' className="opacity-40 w-full h-full object-cover" />
       <div className='absolute inset-0 bg-gradient-to-t from-gray-950 to-transparent'></div>
     </div>
     
