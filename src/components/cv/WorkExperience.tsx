@@ -17,6 +17,12 @@ type WorkItem = {
 
 const workExperienceData: WorkItem[] = [
   {
+    role: "TA in Experimental Physics II & Maths for Physicists",
+    company: "University of Exeter",
+    period: "Jan 2025 - Present",
+    description: "Teaching Assistant in Experimental Physics II & Maths for Physicists.",
+  },
+  {
     role: "Full Stack Developer",
     company: "Banco BTG Pactual",
     period: "Nov 2023 - Dec 2024",

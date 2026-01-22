@@ -36,7 +36,7 @@ const HeroCV = () => (
               "Optical Computing.",
               "Machine Learning.",
               "Complex Media.",
-              "Powered by coffee and unanswered questions."
+              "Yes, I do physics and I don't drink coffee (I am normal)."
             ]} 
           />
         </motion.p>

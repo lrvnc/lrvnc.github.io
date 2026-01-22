@@ -48,6 +48,11 @@ export const countryFlags = {
     flag: "https://flagcdn.com/w40/fr.png",
     className: "w-6 h-auto",
   },
+  "University of Exeter": {
+    country: "UK",
+    flag: "https://flagcdn.com/w40/gb.png",
+    className: "w-6 h-auto",
+  },
   "UFSCar (Peer Tutoring Program)": {
     country: "Brazil",
     flag: "https://flagcdn.com/w40/br.png",
