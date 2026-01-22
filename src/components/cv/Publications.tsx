@@ -84,7 +84,7 @@ const Publications = () => {
       viewport={{ once: true, amount: 0.2 }}
     >
       <div className="container mx-auto px-6">
-        <h2 className="text-2xl lg:text-3xl md:text-3xl sm:text-3xl xl:text-3xl font-bold text-center mb-12 text-gray-900">
+        <h2 className="text-2xl sm:text-3xl font-bold text-center mb-8 sm:mb-12 text-gray-900">
           Publications & Conferences
         </h2>
 

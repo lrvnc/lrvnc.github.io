@@ -76,15 +76,15 @@ const ExperienceList = ({ data }: { data: WorkItem[] }) => (
             <Briefcase className="w-4 h-4 text-white" />
           </motion.span>
 
-          <h3 className="flex items-center min-h-8 text-xl font-semibold text-gray-900">
+          <h3 className="flex items-center min-h-8 text-lg sm:text-xl font-semibold text-gray-900">
             {job.role}
           </h3>
 
-          <div className="text-base text-justify font-semibold text-gray-600 mb-2">
+          <div className="text-sm sm:text-base text-justify font-semibold text-gray-600 mb-2">
             {job.company}
           </div>
 
-          <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 text-sm text-gray-500 mb-4">
+          <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 text-xs sm:text-sm text-gray-500 mb-4">
             <div className="flex items-center gap-1.5 bg-gray-100 px-2 py-1 rounded-md w-fit">
               {flagData && (
                 <div className="flex items-center gap1.5">
@@ -121,7 +121,7 @@ const ExperienceList = ({ data }: { data: WorkItem[] }) => (
             </time>
           </div>
 
-          <p className="text-base font-normal text-gray-600 text-justify">
+          <p className="text-sm sm:text-base font-normal text-gray-600 text-justify">
             {job.description}
           </p>
         </motion.div>

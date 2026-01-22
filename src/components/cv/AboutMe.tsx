@@ -19,8 +19,8 @@ const AboutMe = () => {
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
     >
-      <div className="container mx-auto px-6">
-        <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+      <div className="container mx-auto px-4 sm:px-6">
+        <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-8 sm:gap-12 lg:gap-16">
           <motion.div className="w-full lg:w-1/2" variants={itemVariant}>
             <ElegantCarousel images={aboutMeImages} />
           </motion.div>

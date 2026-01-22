@@ -13,10 +13,10 @@ const institutions = [
 
 const InstitutionLogos = () => {
   const marqueeInstitutions = [...institutions, ...institutions, ...institutions];
-  
+
   return (
     <div className="absolute bottom-0 left-0 w-full py-3">
-      
+
       <style>{`
         @keyframes infinite-scroll {
           0% { transform: translateX(0); }
@@ -45,16 +45,16 @@ const InstitutionLogos = () => {
                   flex items-center justify-center
                   rounded-xl px-5 py-5
                   h-[60px] w-[200px]
-                  lg:h-[90px] md:h-[90px] sm:h-[90px]
+                  lg:h-[90px] md:h-[80px] sm:h-[70px]
                   transition-all duration-200
                   hover:bg-white/90
                   '>
                   {logoData && logoData.src ? (
-                    <img 
-                      src={logoData.src} 
-                      alt={`${name} logo`} 
+                    <img
+                      src={logoData.src}
+                      alt={`${name} logo`}
                       title={name}
-                      className={cn("object-contain w-full h-full grayscale invert contrast-75 opacity-80 transition-all duration-200 group-hover:grayscale-0 group-hover:invert-0 group-hover:opacity-100", logoData.className)} 
+                      className={cn("object-contain w-full h-full grayscale invert contrast-75 opacity-80 transition-all duration-200 group-hover:grayscale-0 group-hover:invert-0 group-hover:opacity-100", logoData.className)}
                     />
                   ) : (
                     <LogoPlaceholder name={name} className="h-12 w-32 text-2xl" />
