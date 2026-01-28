@@ -144,7 +144,10 @@ const WorkExperience = () => (
       </h2>
       <ExperienceList data={workExperienceData} />
 
-      <h2 className="text-2xl lg:text-3xl md:text-3xl sm:text-3xl xl:text-3xl font-bold text-center mb-12 mt-20 text-gray-900">
+      <h2
+        id="teaching-experience"
+        className="scroll-mt-24 text-2xl lg:text-3xl md:text-3xl sm:text-3xl xl:text-3xl font-bold text-center mb-12 mt-20 text-gray-900"
+      >
         Academic & Teaching Experience
       </h2>
       <ExperienceList data={teachingExperienceData} />

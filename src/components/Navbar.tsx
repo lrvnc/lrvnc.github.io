@@ -13,6 +13,7 @@ const navItems = [
   { id: "about", label: "About" },
   { id: "education", label: "Education" },
   { id: "work-experience", label: "Work Experience" },
+  { id: "teaching-experience", label: "Teaching Experience" },
   { id: "publications", label: "Publications" },
   { id: "portfolio", label: "Portfolio" },
   // { id: 'certifications', label: 'Certifications' },
@@ -115,7 +116,7 @@ const Navbar = () => {
                           ? "text-gray-700 hover:bg-gray-100"
                           : "text-gray-200 hover:bg-white/10",
                         activeSection === item.id &&
-                          (showSolidNav ? "bg-gray-200" : "bg-white/20")
+                        (showSolidNav ? "bg-gray-200" : "bg-white/20")
                       )}
                     >
                       {item.label}
@@ -131,7 +132,7 @@ const Navbar = () => {
                         ? "bg-gray-800 text-white hover:bg-gray-900"
                         : "bg-white text-black hover:bg-gray-200",
                       activeSection === "contact" &&
-                        "!bg-primary !text-primary-foreground"
+                      "!bg-primary !text-primary-foreground"
                     )}
                   >
                     Contact Me
@@ -178,7 +179,7 @@ const Navbar = () => {
                   ? "text-gray-700 hover:bg-gray-50"
                   : "text-gray-200 hover:bg-white/10",
                 activeSection === item.id &&
-                  (showSolidNav ? "bg-gray-100 font-bold" : "")
+                (showSolidNav ? "bg-gray-100 font-bold" : "")
               )}
             >
               {item.label}
@@ -192,7 +193,7 @@ const Navbar = () => {
                 ? "text-gray-700 bg-gray-100 hover:bg-gray-200"
                 : "text-white bg-white/20 hover:bg-white/30",
               activeSection === "contact" &&
-                (showSolidNav ? "bg-gray-200 font-bold" : "bg-white/30 font-bold")
+              (showSolidNav ? "bg-gray-200 font-bold" : "bg-white/30 font-bold")
             )}
           >
             Contact Me
