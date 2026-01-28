@@ -5,9 +5,9 @@ export const aboutMeData = {
         "I love traveling and discovering new places. But more than that, I value the connections made along the way — it's the people who make the journey meaningful. Feel free to reach out if you'd like to connect, collaborate, or just have a good chat!"
     ],
     images: [
-        { src: "/me/imgs/mit1-zoom.jpg", alt: "Me at MIT - 2023" },
-        { src: "/me/imgs/espci2-zoom.jpg", alt: "My graduation at ESPCI - 2025" },
-        { src: "/me/imgs/espci3.jpg", alt: "My graduation at ESPCI - 2025" },
-        { src: "/me/imgs/trip1.jpg", alt: "Trip in UK - 2025" },
+        { src: "/imgs/mit1-zoom.jpg", alt: "Me at MIT - 2023" },
+        { src: "/imgs/espci2-zoom.jpg", alt: "My graduation at ESPCI - 2025" },
+        { src: "/imgs/espci3.jpg", alt: "My graduation at ESPCI - 2025" },
+        { src: "/imgs/trip1.jpg", alt: "Trip in UK - 2025" },
     ]
 };
