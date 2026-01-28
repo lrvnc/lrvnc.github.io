@@ -34,7 +34,7 @@ const swipePower = (offset: number, velocity: number) => {
   return Math.abs(offset) * velocity;
 };
 
-export const ElegantCarousel: React.FC<ElegantCarouselProps> = ({ images }) => {
+const ImageCarousel: React.FC<ElegantCarouselProps> = ({ images }) => {
   const [[page, direction], setPage] = useState([0, 0]);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -48,7 +48,7 @@ export const ElegantCarousel: React.FC<ElegantCarouselProps> = ({ images }) => {
     if (isHovered) return;
     const interval = setInterval(() => {
       paginate(1);
-    }, 4000); 
+    }, 4000);
     return () => clearInterval(interval);
   }, [isHovered, paginate]);
 
@@ -129,3 +129,5 @@ export const ElegantCarousel: React.FC<ElegantCarouselProps> = ({ images }) => {
     </div>
   );
 };
+
+export default ImageCarousel;

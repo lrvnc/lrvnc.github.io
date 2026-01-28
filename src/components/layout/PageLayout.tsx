@@ -1,9 +1,9 @@
 
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
-import ContactInfo from '@/components/ContactInfo';
+import Navbar from './Navbar';
+import Footer from './Footer';
+import ContactInfo from '@/components/sections/Contact';
 
 type PageLayoutProps = {
   children: React.ReactNode;

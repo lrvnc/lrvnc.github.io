@@ -4,12 +4,8 @@ import { Mail, Linkedin, Github, PenSquare } from "lucide-react";
 import { personImg } from "@/lib/constants";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent } from "@/components/ui/card";
-import {
-  sectionVariant,
-  listVariant,
-  itemVariant,
-  iconVariant,
-} from "@/lib/animations";
+import { listVariant, itemVariant } from "@/lib/animations";
+import { contactData } from "@/data/contact";
 
 const ContactInfo = () => {
   return (
@@ -27,12 +23,10 @@ const ContactInfo = () => {
         >
           <motion.div className="text-center" variants={itemVariant}>
             <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight">
-              Get In Touch
+              {contactData.title}
             </h2>
             <p className="text-gray-300 text-lg max-w-md mx-auto mt-4">
-              I'm always open to chat and collaborate. Feel free to reach out if
-              you have a project in mind, want to discuss a paper, or just say
-              hello!
+              {contactData.description}
             </p>
           </motion.div>
 
@@ -55,11 +49,11 @@ const ContactInfo = () => {
                       Leandro Risso Venâncio
                     </h3>
                     <a
-                      href="mailto:rissov.leandro@gmail.com"
+                      href={`mailto:${contactData.email}`}
                       className="inline-flex items-center text-gray-300 hover:text-white transition-colors text-md mt-1"
                     >
                       <Mail className="w-5 h-5 mr-2" />
-                      <span>rissov.leandro@gmail.com</span>
+                      <span>{contactData.email}</span>
                     </a>
                   </div>
                   <motion.div
@@ -67,7 +61,7 @@ const ContactInfo = () => {
                     variants={listVariant}
                   >
                     <motion.a
-                      href="https://www.linkedin.com/in/rissov-leandro/"
+                      href={contactData.socials.linkedin}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="w-10 h-10 rounded-full bg-gray-700/50 flex items-center justify-center text-gray-300 transition-colors hover:bg-gray-700 hover:text-white"
@@ -77,7 +71,7 @@ const ContactInfo = () => {
                       <Linkedin size={20} />
                     </motion.a>
                     <motion.a
-                      href="https://github.com/lrvnc"
+                      href={contactData.socials.github}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="w-10 h-10 rounded-full bg-gray-700/50 flex items-center justify-center text-gray-300 transition-colors hover:bg-gray-700 hover:text-white"
@@ -87,7 +81,7 @@ const ContactInfo = () => {
                       <Github size={20} />
                     </motion.a>
                     <motion.a
-                      href="https://orcid.org/0009-0002-0924-5218"
+                      href={contactData.socials.orcid}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="w-10 h-10 rounded-full bg-gray-700/50 flex items-center justify-center text-gray-300 transition-colors hover:bg-gray-700 hover:text-white"
