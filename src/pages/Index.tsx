@@ -5,7 +5,6 @@ import About from "@/components/sections/About";
 import Education from "@/components/sections/Education";
 import Experience from "@/components/sections/Experience";
 import Publications from "@/components/sections/Publications";
-import Portfolio from "@/components/sections/Portfolio";
 import Skills from "@/components/sections/Skills";
 import { personImg } from "@/lib/constants";
 
@@ -22,7 +21,6 @@ const Index = () => {
       <Education />
       <Experience />
       <Publications />
-      <Portfolio />
       <Skills />
     </PageLayout>
   );
