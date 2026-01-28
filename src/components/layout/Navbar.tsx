@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -15,14 +15,16 @@ const navItems = [
   { id: "work-experience", label: "Work Experience" },
   { id: "teaching-experience", label: "Teaching Experience" },
   { id: "publications", label: "Publications" },
-  { id: "portfolio", label: "Portfolio" },
-  // { id: 'certifications', label: 'Certifications' },
+  { id: "skills", label: "Skills & Languages" },
+  { id: "blog", label: "Blog", path: "/blog" },
 ];
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const showSolidNav = isScrolled || isMenuOpen;
 
@@ -63,11 +65,39 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (location.pathname === "/" && location.state && (location.state as any).scrollTo) {
+      const id = (location.state as any).scrollTo;
+      setTimeout(() => {
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({
+            behavior: "smooth",
+          });
+        }
+      }, 100);
+      // Clean up state
+      navigate(location.pathname, { replace: true, state: {} });
+    }
+  }, [location, navigate]);
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const scrollToSection = (id: string) => {
+  const scrollToSection = (id: string, path?: string) => {
+    if (path) {
+      navigate(path);
+      setIsMenuOpen(false);
+      return;
+    }
+
+    if (location.pathname !== "/") {
+      navigate("/", { state: { scrollTo: id } });
+      setIsMenuOpen(false);
+      return;
+    }
+
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({
@@ -109,7 +139,7 @@ const Navbar = () => {
                 {navItems.map((item) => (
                   <NavigationMenuItem key={item.id}>
                     <button
-                      onClick={() => scrollToSection(item.id)}
+                      onClick={() => scrollToSection(item.id, item.path)}
                       className={cn(
                         "px-3 py-2 text-sm font-medium rounded-md transition-colors",
                         showSolidNav
@@ -172,7 +202,7 @@ const Navbar = () => {
           {navItems.map((item) => (
             <button
               key={item.id}
-              onClick={() => scrollToSection(item.id)}
+              onClick={() => scrollToSection(item.id, item.path)}
               className={cn(
                 "block w-full text-left px-3 py-2 rounded-md text-base font-medium",
                 showSolidNav

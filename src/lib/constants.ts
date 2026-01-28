@@ -1,2 +1,2 @@
-export const personImg = "/me/imgs/profile.jpg";
-export const placeholderImg = "/me/imgs/background-paris.jpg";
+export const personImg = "/imgs/profile.jpg";
+export const placeholderImg = "/imgs/background-paris.jpg";

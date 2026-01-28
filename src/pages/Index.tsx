@@ -1,14 +1,11 @@
-import PageLayout from "@/components/PageLayout";
-import SEO from "@/components/SEO";
-import {
-  HeroCV,
-  AboutMe,
-  WorkExperience,
-  Publications,
-  CertificationsAndSkills,
-  Education,
-  Portfolio,
-} from "@/components/cv";
+import PageLayout from "@/components/layout/PageLayout";
+import SEO from "@/components/layout/SEO";
+import LandingIntro from "@/components/sections/LandingIntro";
+import About from "@/components/sections/About";
+import Education from "@/components/sections/Education";
+import Experience from "@/components/sections/Experience";
+import Publications from "@/components/sections/Publications";
+import Skills from "@/components/sections/Skills";
 import { personImg } from "@/lib/constants";
 
 const Index = () => {
@@ -19,13 +16,12 @@ const Index = () => {
         description="Leandro Venâncio personal webpage."
         imageUrl={personImg}
       />
-      <HeroCV />
-      <AboutMe />
+      <LandingIntro />
+      <About />
       <Education />
-      <WorkExperience />
+      <Experience />
       <Publications />
-      <Portfolio />
-      {/* <CertificationsAndSkills /> */}
+      <Skills />
     </PageLayout>
   );
 };

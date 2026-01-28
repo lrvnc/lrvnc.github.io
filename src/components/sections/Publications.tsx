@@ -1,6 +1,5 @@
 import { FileText, ExternalLink } from "lucide-react";
 import { motion } from "framer-motion";
-import { sectionVariant } from "@/lib/animations";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -11,28 +10,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-
-type PubItem = {
-  type: "Conference Paper" | "Journal" | "Preprint" | "Workshop" | string;
-  title: string;
-  venue: string;
-  description: string;
-  icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
-  url?: string;
-};
-
-const publicationsData: PubItem[] = [
-  {
-    type: "Conference Paper",
-    title:
-      "Scaling Properties for Artificial Neural Network Models of a Small Nervous System",
-    venue: "IEEE SoutheastCon 2024",
-    description:
-      "Co-authored work on scaling laws for ANN models of the *C. elegans* nervous system—exploring how model size and data affect predictive performance and biological plausibility. Preprint available.",
-    icon: FileText,
-    url: "https://www.biorxiv.org/content/10.1101/2024.02.13.580186.full.pdf",
-  },
-];
+import { publicationsData, PubItem } from "@/data/publications";
 
 const PublicationCard = ({ item }: { item: PubItem }) => {
   const Icon = item.icon ?? FileText;
