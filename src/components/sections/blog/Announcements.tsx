@@ -1,22 +1,69 @@
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { motion } from "framer-motion";
-import { Megaphone } from "lucide-react";
+import { Bell } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 
-const Announcements = () => {
+interface AnnouncementsProps {
+    searchQuery: string;
+}
+
+const announcementsData = Array.from({ length: 15 }).map((_, i) => ({
+    id: i + 1,
+    title: `Announcement ${i + 1}: ${['New Project Launch', 'Conference Talk', 'Workshop', 'Library Release', 'Site Update'][i % 5]}`,
+    content: "We are excited to announce the release of this new project. It has been in the works for a while together with the community...",
+    date: `2024-${['01', '02', '03'][i % 3]}-${10 + i}`,
+    type: ['Major', 'Minor', 'Event'][i % 3]
+}));
+
+const Announcements = ({ searchQuery }: AnnouncementsProps) => {
+    const filteredAnnouncements = announcementsData.filter(item =>
+        item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        item.content.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
     return (
-        <div className="h-full flex flex-col justify-center items-center">
-            <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                className="text-center p-8"
-            >
-                <div className="bg-gray-100 p-6 rounded-full inline-block mb-6">
-                    <Megaphone className="w-12 h-12 text-gray-400" />
+        <div className="w-full pb-24">
+            {filteredAnnouncements.length === 0 ? (
+                <div className="text-center text-gray-500 py-12">
+                    <p className="text-xl">No announcements found matching "{searchQuery}"</p>
                 </div>
-                <h2 className="text-2xl font-bold text-gray-900 mb-2">Announcements</h2>
-                <p className="text-gray-500 max-w-md">
-                    Latest news and updates will be posted here.
-                </p>
-            </motion.div>
+            ) : (
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="grid grid-cols-1 md:grid-cols-2 gap-6"
+                >
+                    {filteredAnnouncements.map((item, index) => (
+                        <motion.div
+                            key={item.id}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5, delay: index * 0.1 }}
+                            whileHover={{ y: -5 }}
+                        >
+                            <Card className={`border-none shadow-md hover:shadow-lg transition-all relative overflow-hidden h-full ${item.type === 'Major' ? 'bg-primary/5 border-primary/20 border' : 'bg-white'}`}>
+                                {item.type === 'Major' && (
+                                    <div className="absolute top-0 right-0 p-2">
+                                        <Bell className="w-4 h-4 text-primary animate-bounce-subtle" />
+                                    </div>
+                                )}
+                                <CardHeader className="pb-2">
+                                    <div className="flex justify-between items-center mb-2">
+                                        <Badge variant={item.type === 'Major' ? 'default' : 'secondary'}>{item.type}</Badge>
+                                        <span className="text-xs text-gray-400">{item.date}</span>
+                                    </div>
+                                    <CardTitle className="text-lg">{item.title}</CardTitle>
+                                </CardHeader>
+                                <CardContent>
+                                    <p className="text-sm text-gray-600">
+                                        {item.content}
+                                    </p>
+                                </CardContent>
+                            </Card>
+                        </motion.div>
+                    ))}
+                </motion.div>
+            )}
         </div>
     );
 };

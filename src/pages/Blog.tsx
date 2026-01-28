@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Search } from 'lucide-react';
+import { Input } from "@/components/ui/input";
 import BlogNavBar from '@/components/layout/BlogNavBar';
 import Posts from '@/components/sections/blog/Posts';
 import Notes from '@/components/sections/blog/Notes';
@@ -10,76 +12,76 @@ type BlogSection = 'Posts' | 'Notes' | 'Videos' | 'Announcements';
 
 const Blog = () => {
     const [activeSection, setActiveSection] = useState<BlogSection>('Posts');
-    const sections: BlogSection[] = ['Posts', 'Notes', 'Videos', 'Announcements'];
-
-    // Slide animation variants
-    const variants = {
-        enter: (direction: number) => ({
-            x: direction > 0 ? 1000 : -1000,
-            opacity: 0,
-            scale: 0.95,
-        }),
-        center: {
-            zIndex: 1,
-            x: 0,
-            opacity: 1,
-            scale: 1,
-        },
-        exit: (direction: number) => ({
-            zIndex: 0,
-            x: direction < 0 ? 1000 : -1000,
-            opacity: 0,
-            scale: 0.95,
-        }),
-    };
-
-    const [[page, direction], setPage] = useState([0, 0]);
+    const [searchQuery, setSearchQuery] = useState('');
 
     // Handle section change from Navbar
     const handleSectionChange = (newSection: BlogSection) => {
-        const newIndex = sections.indexOf(newSection);
-        const currentIndex = sections.indexOf(activeSection);
-        const newDirection = newIndex > currentIndex ? 1 : -1;
-
-        setPage([newIndex, newDirection]);
         setActiveSection(newSection);
+        setSearchQuery(''); // Reset search on section change
     };
-
-    // Handle Swipe Gestures
-
 
     const renderSection = () => {
         switch (activeSection) {
-            case 'Posts': return <Posts />;
-            case 'Notes': return <Notes />;
-            case 'Videos': return <Videos />;
-            case 'Announcements': return <Announcements />;
-            default: return <Posts />;
+            case 'Posts': return <Posts searchQuery={searchQuery} />;
+            case 'Notes': return <Notes searchQuery={searchQuery} />;
+            case 'Videos': return <Videos searchQuery={searchQuery} />;
+            case 'Announcements': return <Announcements searchQuery={searchQuery} />;
+            default: return <Posts searchQuery={searchQuery} />;
         }
     };
 
     return (
-        <div className="h-screen w-screen overflow-hidden bg-gray-50 flex flex-col font-sans">
+        <div className="min-h-screen bg-gray-50 flex flex-col font-sans">
             <BlogNavBar
                 activeSection={activeSection}
                 onSectionChange={handleSectionChange}
             />
 
-            <div className="flex-1 relative overflow-hidden mt-16">
-                <AnimatePresence initial={false} custom={direction} mode="wait">
+            {/* Sticky Header Section */}
+            <div className="sticky top-16 z-30 bg-gray-50/95 backdrop-blur-md border-b border-gray-100 pb-6 pt-8 shadow-sm transition-all">
+                <div className="container mx-auto px-4 max-w-5xl">
                     <motion.div
-                        key={page[0]}
-                        custom={direction}
-                        variants={variants}
-                        initial="enter"
-                        animate="center"
-                        exit="exit"
-                        transition={{
-                            x: { type: "spring", stiffness: 300, damping: 30 },
-                            opacity: { duration: 0.2 }
-                        }}
-                        className="absolute inset-0 w-full h-full"
-                        className="absolute inset-0 w-full h-full"
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="text-center space-y-4 mb-8"
+                    >
+                        <h1 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-gray-900 via-gray-700 to-gray-900 tracking-tight">
+                            Welcome to my Blog
+                        </h1>
+                        <p className="text-xl md:text-2xl text-gray-600 font-light max-w-2xl mx-auto leading-relaxed">
+                            A collection of my thoughts, projects, notes, and a bit of everything.
+                        </p>
+                    </motion.div>
+
+                    <div className="flex justify-center">
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ delay: 0.2 }}
+                            className="w-full max-w-2xl relative"
+                        >
+                            <Search className="absolute left-5 top-1/2 -translate-y-1/2 text-gray-400 w-6 h-6" />
+                            <Input
+                                type="text"
+                                placeholder={`Search in ${activeSection}...`}
+                                className="pl-14 h-14 text-lg bg-white border-gray-200 focus:bg-white focus:ring-2 focus:ring-primary/20 transition-all shadow-lg rounded-2xl hover:shadow-xl"
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
+                            />
+                        </motion.div>
+                    </div>
+                </div>
+            </div>
+
+            {/* Scrollable Content Area */}
+            <div className="flex-1 container mx-auto px-4 max-w-6xl py-12">
+                <AnimatePresence mode="wait">
+                    <motion.div
+                        key={activeSection}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -20 }}
+                        transition={{ duration: 0.3 }}
                     >
                         {renderSection()}
                     </motion.div>
