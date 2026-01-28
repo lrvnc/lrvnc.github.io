@@ -15,7 +15,7 @@ const navItems = [
   { id: "work-experience", label: "Work Experience" },
   { id: "teaching-experience", label: "Teaching Experience" },
   { id: "publications", label: "Publications" },
-  { id: "certifications", label: "Skills & Certifications" },
+  { id: "skills", label: "Skills & Languages" },
   { id: "blog", label: "Blog", path: "/blog" },
 ];
 

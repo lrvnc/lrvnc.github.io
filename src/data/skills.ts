@@ -1,53 +1,50 @@
-export const certificationsData = [
+export const spokenLanguagesData = [
     {
-        name: "Certified Kubernetes Application Developer (CKAD)",
-        issuer: "Cloud Native Computing Foundation",
-        year: "2023",
+        language: "Portuguese",
+        level: "Native",
+        description: "",
+        flag: "https://flagcdn.com/w40/br.png"
     },
     {
-        name: "AWS Certified Solutions Architect – Associate",
-        issuer: "Amazon Web Services",
-        year: "2022",
+        language: "English",
+        level: "Advanced",
+        description: "Toefl iBT 940/990 • 1.5 years living in US/UK",
+        flag: "https://flagcdn.com/w40/gb.png"
     },
     {
-        name: "Professional Scrum Master™ I (PSM I)",
-        issuer: "Scrum.org",
-        year: "2021",
+        language: "French",
+        level: "Advanced",
+        description: "TCF 606/699 • 2 years living in France",
+        flag: "https://flagcdn.com/w40/fr.png"
+    },
+    {
+        language: "Spanish",
+        level: "Professional working proficiency",
+        description: "Working experience @ BTG Pactual",
+        flag: "https://flagcdn.com/w40/es.png"
     },
 ];
 
-export const skillsData = {
-    frontend: [
-        "React",
-        "TypeScript",
-        "Next.js",
-        "Redux",
-        "Tailwind CSS",
-        "HTML5 & CSS3",
-        "Framer Motion",
+export const technicalSkillsData = {
+    primary: {
+        name: "Python",
+        icon: "python", // placeholder for component logic
+        description: "Primary language for data science, AI, and backend development."
+    },
+    otherLanguages: [
+        "C++",
+        "JavaScript",
+        "SQL",
+        "Bash",
+        "HTML/CSS"
     ],
-    backend: [
+    frameworksAndTools: [
+        "React.js",
         "Node.js",
-        "Express",
-        "MongoDB",
-        "PostgreSQL",
-        "REST APIs",
-        "GraphQL",
-        "tRPC",
-    ],
-    tools: [
-        "Git & GitHub",
+        "AWS",
         "Docker",
-        "Webpack",
-        "Jira",
-        "Figma",
-        "CI/CD",
-        "Vite",
-    ],
-    languages: [
-        "Portuguese: Native",
-        "English: C1",
-        "Spanish: Professional",
-        "French: C1",
-    ],
+        "Kubernetes",
+        "Git & Github",
+        "Linux/DevOps"
+    ]
 };
