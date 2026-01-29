@@ -12,6 +12,7 @@ import Videos from '@/components/sections/blog/Videos';
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import FuturisticBackground from '@/components/common/FuturisticBackground';
 
 import { blogPosts } from '@/data/blog/posts';
 import { notesData } from '@/data/blog/notes';
@@ -69,14 +70,15 @@ const Blog = () => {
     };
 
     return (
-        <div className="min-h-screen bg-gray-50 flex flex-col font-space">
+        <div className="min-h-screen bg-transparent flex flex-col font-space relative">
+            <FuturisticBackground />
             <BlogNavBar
                 activeSection={activeSection}
                 onSectionChange={handleSectionChange}
             />
 
             {/* Header Section */}
-            <div className="bg-gray-50 pt-36 md:pt-20 pb-10">
+            <div className="bg-transparent pt-36 md:pt-20 pb-10">
                 <div className="container mx-auto px-4 max-w-5xl">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -127,7 +129,7 @@ const Blog = () => {
                                 <Input
                                     type="text"
                                     placeholder={`Search in ${activeSection}...`}
-                                    className="pl-14 h-14 text-lg bg-white border-gray-200 focus:bg-white focus:ring-2 focus:ring-primary/20 transition-all shadow-lg rounded-2xl hover:shadow-xl"
+                                    className="pl-14 h-14 text-lg bg-white/80 backdrop-blur-sm border-gray-200 focus:bg-white focus:ring-2 focus:ring-primary/20 transition-all shadow-lg rounded-2xl hover:shadow-xl"
                                     value={searchQuery}
                                     onChange={(e) => setSearchQuery(e.target.value)}
                                 />
