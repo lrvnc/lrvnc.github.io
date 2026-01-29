@@ -110,17 +110,9 @@ const Navbar = () => {
   return (
     <motion.nav
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration w-full",
+        "fixed top-0 left-0 right-0 z-50 transition-[background-color,box-shadow,padding] duration w-full",
         showSolidNav ? "bg-white shadow-sm duration-100" : "bg-transparent duration-500"
       )}
-      initial={{
-        opacity: 1,
-        y: 0,
-      }}
-      animate={{
-        opacity: 1,
-        y: 0,
-      }}
     >
       <div className="w-full px-6 sm:px-6 lg:px-8 mx-auto">
         <div className="flex items-center justify-between h-16">
