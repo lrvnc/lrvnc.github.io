@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 
-type BlogSection = 'Posts' | 'Notes' | 'Videos' | 'Announcements';
+type BlogSection = 'Posts' | 'Notes' | 'Videos';
 
 interface BlogNavBarProps {
     activeSection: BlogSection;
@@ -13,7 +13,7 @@ interface BlogNavBarProps {
 }
 
 const BlogNavBar = ({ activeSection, onSectionChange }: BlogNavBarProps) => {
-    const sections: BlogSection[] = ['Posts', 'Notes', 'Videos', 'Announcements'];
+    const sections: BlogSection[] = ['Posts', 'Notes', 'Videos'];
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     return (

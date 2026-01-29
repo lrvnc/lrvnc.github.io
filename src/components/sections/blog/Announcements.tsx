@@ -2,24 +2,25 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import { Bell } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { announcementsData } from "@/data/blog/announcements";
 
 interface AnnouncementsProps {
     searchQuery: string;
+    selectedTags?: string[];
 }
 
-const announcementsData = Array.from({ length: 15 }).map((_, i) => ({
-    id: i + 1,
-    title: `Announcement ${i + 1}: ${['New Project Launch', 'Conference Talk', 'Workshop', 'Library Release', 'Site Update'][i % 5]}`,
-    content: "We are excited to announce the release of this new project. It has been in the works for a while together with the community...",
-    date: `2024-${['01', '02', '03'][i % 3]}-${10 + i}`,
-    type: ['Major', 'Minor', 'Event'][i % 3]
-}));
+const Announcements = ({ searchQuery, selectedTags = [] }: AnnouncementsProps) => {
+    const filteredAnnouncements = announcementsData.filter(item => {
+        const query = searchQuery.toLowerCase();
+        const matchesSearch =
+            item.title.toLowerCase().includes(query) ||
+            item.content.toLowerCase().includes(query);
 
-const Announcements = ({ searchQuery }: AnnouncementsProps) => {
-    const filteredAnnouncements = announcementsData.filter(item =>
-        item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        item.content.toLowerCase().includes(searchQuery.toLowerCase())
-    );
+        const matchesTags = selectedTags.length === 0 ||
+            selectedTags.includes(item.type);
+
+        return matchesSearch && matchesTags;
+    });
 
     return (
         <div className="w-full pb-24">

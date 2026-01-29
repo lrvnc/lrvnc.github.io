@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Database, Search, Sparkles } from 'lucide-react';
+import { Database, Search, Sparkles, Filter, X } from 'lucide-react';
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import BlogNavBar from '@/components/layout/BlogNavBar';
@@ -9,32 +9,67 @@ import ContactInfo from '@/components/sections/Contact';
 import Posts from '@/components/sections/blog/Posts';
 import Notes from '@/components/sections/blog/Notes';
 import Videos from '@/components/sections/blog/Videos';
-import Announcements from '@/components/sections/blog/Announcements';
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 
-type BlogSection = 'Posts' | 'Notes' | 'Videos' | 'Announcements';
+import { blogPosts } from '@/data/blog/posts';
+import { notesData } from '@/data/blog/notes';
+import { videosData } from '@/data/blog/videos';
+
+type BlogSection = 'Posts' | 'Notes' | 'Videos';
 
 const Blog = () => {
     const [activeSection, setActiveSection] = useState<BlogSection>('Posts');
     const [searchQuery, setSearchQuery] = useState('');
+    const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
-    // Handle section change from Navbar
+    // Handle section change
     const handleSectionChange = (newSection: BlogSection) => {
         setActiveSection(newSection);
-        setSearchQuery(''); // Reset search on section change
+        setSearchQuery('');
+        setSelectedTags([]); // Reset tags on section change
+    };
+
+    // Calculate available tags based on active section
+    const availableTags = useMemo(() => {
+        const tags = new Set<string>();
+        switch (activeSection) {
+            case 'Posts':
+                blogPosts.forEach(post => post.tags.forEach(tag => tags.add(tag)));
+                break;
+            case 'Notes':
+                notesData.forEach(note => {
+                    tags.add(note.category);
+                    note.tags?.forEach(tag => tags.add(tag));
+                });
+                break;
+            case 'Videos':
+                videosData.forEach(video => tags.add(video.category));
+                break;
+        }
+        return Array.from(tags).sort();
+    }, [activeSection]);
+
+    const toggleTag = (tag: string) => {
+        setSelectedTags(prev =>
+            prev.includes(tag)
+                ? prev.filter(t => t !== tag)
+                : [...prev, tag]
+        );
     };
 
     const renderSection = () => {
         switch (activeSection) {
-            case 'Posts': return <Posts searchQuery={searchQuery} />;
-            case 'Notes': return <Notes searchQuery={searchQuery} />;
-            case 'Videos': return <Videos searchQuery={searchQuery} />;
-            case 'Announcements': return <Announcements searchQuery={searchQuery} />;
-            default: return <Posts searchQuery={searchQuery} />;
+            case 'Posts': return <Posts searchQuery={searchQuery} selectedTags={selectedTags} />;
+            case 'Notes': return <Notes searchQuery={searchQuery} selectedTags={selectedTags} />;
+            case 'Videos': return <Videos searchQuery={searchQuery} selectedTags={selectedTags} />;
+            default: return <Posts searchQuery={searchQuery} selectedTags={selectedTags} />;
         }
     };
 
     return (
-        <div className="min-h-screen bg-gray-50 flex flex-col font-sans">
+        <div className="min-h-screen bg-gray-50 flex flex-col font-space">
             <BlogNavBar
                 activeSection={activeSection}
                 onSectionChange={handleSectionChange}
@@ -68,7 +103,7 @@ const Blog = () => {
                                 </span>
                             </h1>
                             <p className="text-xl md:text-2xl text-gray-500 font-light max-w-2xl mx-auto leading-relaxed text-balance">
-                                A collection of my thoughts, projects, notes, and a little bit of everything in between.
+                                A collection of my thoughts, projects, notes, and whatever else I find interesting.
                             </p>
                         </div>
                     </motion.div>
@@ -85,18 +120,96 @@ const Blog = () => {
                             initial={{ opacity: 0, scale: 0.95 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ delay: 0.2 }}
-                            className="w-full max-w-2xl relative"
+                            className="w-full max-w-2xl flex gap-2"
                         >
-                            <Search className="absolute left-5 top-1/2 -translate-y-1/2 text-gray-400 w-6 h-6" />
-                            <Input
-                                type="text"
-                                placeholder={`Search in ${activeSection}...`}
-                                className="pl-14 h-14 text-lg bg-white border-gray-200 focus:bg-white focus:ring-2 focus:ring-primary/20 transition-all shadow-lg rounded-2xl hover:shadow-xl"
-                                value={searchQuery}
-                                onChange={(e) => setSearchQuery(e.target.value)}
-                            />
+                            <div className="relative flex-1">
+                                <Search className="absolute left-5 top-1/2 -translate-y-1/2 text-gray-400 w-6 h-6" />
+                                <Input
+                                    type="text"
+                                    placeholder={`Search in ${activeSection}...`}
+                                    className="pl-14 h-14 text-lg bg-white border-gray-200 focus:bg-white focus:ring-2 focus:ring-primary/20 transition-all shadow-lg rounded-2xl hover:shadow-xl"
+                                    value={searchQuery}
+                                    onChange={(e) => setSearchQuery(e.target.value)}
+                                />
+                            </div>
+
+                            <Popover>
+                                <PopoverTrigger asChild>
+                                    <Button
+                                        variant="outline"
+                                        className="h-14 px-6 rounded-2xl border-gray-200 shadow-lg hover:shadow-xl bg-white text-gray-600 gap-2"
+                                    >
+                                        <Filter className="w-5 h-5" />
+                                        <span className="hidden sm:inline">Filter</span>
+                                        {selectedTags.length > 0 && (
+                                            <Badge variant="secondary" className="ml-1 h-5 min-w-5 flex items-center justify-center p-0 px-1.5 text-[10px]">
+                                                {selectedTags.length}
+                                            </Badge>
+                                        )}
+                                    </Button>
+                                </PopoverTrigger>
+                                <PopoverContent className="w-80 p-4" align="end">
+                                    <div className="space-y-4">
+                                        <div className="flex items-center justify-between">
+                                            <h4 className="font-medium leading-none">Filter by Tags</h4>
+                                            {selectedTags.length > 0 && (
+                                                <Button
+                                                    variant="ghost"
+                                                    size="sm"
+                                                    className="h-auto p-0 text-xs text-muted-foreground hover:text-primary"
+                                                    onClick={() => setSelectedTags([])}
+                                                >
+                                                    Reset
+                                                </Button>
+                                            )}
+                                        </div>
+                                        <div className="flex flex-wrap gap-2">
+                                            {availableTags.map(tag => (
+                                                <Badge
+                                                    key={tag}
+                                                    variant={selectedTags.includes(tag) ? "default" : "outline"}
+                                                    className="cursor-pointer transition-all hover:scale-105 select-none py-1.5 px-3"
+                                                    onClick={() => toggleTag(tag)}
+                                                >
+                                                    {tag}
+                                                </Badge>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </PopoverContent>
+                            </Popover>
                         </motion.div>
                     </div>
+
+                    {/* Active Filters Display */}
+                    <AnimatePresence>
+                        {selectedTags.length > 0 && (
+                            <motion.div
+                                initial={{ opacity: 0, height: 0 }}
+                                animate={{ opacity: 1, height: 'auto' }}
+                                exit={{ opacity: 0, height: 0 }}
+                                className="flex justify-center mt-4"
+                            >
+                                <div className="flex flex-wrap gap-2 justify-center max-w-3xl">
+                                    {selectedTags.map(tag => (
+                                        <Badge
+                                            key={tag}
+                                            variant="secondary"
+                                            className="pl-2 pr-1 py-1 gap-1"
+                                        >
+                                            {tag}
+                                            <button
+                                                onClick={() => toggleTag(tag)}
+                                                className="hover:bg-gray-200 rounded-full p-0.5"
+                                            >
+                                                <X className="w-3 h-3" />
+                                            </button>
+                                        </Badge>
+                                    ))}
+                                </div>
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
                 </div>
             </div>
 
