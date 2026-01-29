@@ -125,7 +125,7 @@ const Blog = () => {
                             className="w-full max-w-2xl flex gap-2"
                         >
                             <div className="relative flex-1">
-                                <Search className="absolute left-5 top-1/2 -translate-y-1/2 text-gray-400 w-6 h-6" />
+                                <Search className="absolute left-5 top-1/2 -translate-y-1/2 text-gray-400 w-6 h-6 z-10" />
                                 <Input
                                     type="text"
                                     placeholder={`Search in ${activeSection}...`}
