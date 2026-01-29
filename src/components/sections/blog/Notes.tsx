@@ -80,24 +80,28 @@ const Notes = ({ searchQuery, selectedTags = [] }: NotesProps) => {
                                     <p className="text-sm text-gray-600 line-clamp-4 flex-1 font-mono">
                                         {note.content}
                                     </p>
-                                    <div className="mt-4 pt-4 border-t border-yellow-200/50 flex flex-col gap-2">
-                                        <div className="flex items-center text-xs text-gray-500 gap-2 cursor-pointer hover:text-gray-800">
-                                            <LinkIcon className="w-3 h-3" />
-                                            <span className="truncate max-w-[150px]">{note.link}</span>
-                                            <ExternalLink className="w-3 h-3 ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
+                                    {(note.link || note.pdfUrl) && (
+                                        <div className="mt-4 pt-4 border-t border-yellow-200/50 flex flex-col gap-2">
+                                            {note.link && (
+                                                <div className="flex items-center text-xs text-gray-500 gap-2 cursor-pointer hover:text-gray-800">
+                                                    <LinkIcon className="w-3 h-3" />
+                                                    <span className="truncate max-w-[150px]">{note.link}</span>
+                                                    <ExternalLink className="w-3 h-3 ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
+                                                </div>
+                                            )}
+                                            {note.pdfUrl && (
+                                                <a
+                                                    href={note.pdfUrl}
+                                                    download
+                                                    className="flex items-center text-xs text-yellow-700 gap-2 cursor-pointer hover:text-yellow-900 font-medium"
+                                                    onClick={(e) => e.stopPropagation()}
+                                                >
+                                                    <FileText className="w-3 h-3" />
+                                                    <span>Download PDF</span>
+                                                </a>
+                                            )}
                                         </div>
-                                        {note.pdfUrl && (
-                                            <a
-                                                href={note.pdfUrl}
-                                                download
-                                                className="flex items-center text-xs text-yellow-700 gap-2 cursor-pointer hover:text-yellow-900 font-medium"
-                                                onClick={(e) => e.stopPropagation()}
-                                            >
-                                                <FileText className="w-3 h-3" />
-                                                <span>Download PDF</span>
-                                            </a>
-                                        )}
-                                    </div>
+                                    )}
                                 </CardContent>
                                 <div className="absolute -bottom-8 -right-8 w-16 h-16 bg-yellow-100 rounded-full blur-2xl group-hover:bg-yellow-200 transition-colors" />
                             </Card>

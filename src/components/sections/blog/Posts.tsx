@@ -25,8 +25,18 @@ const Posts = ({ searchQuery, selectedTags = [] }: PostsProps) => {
     });
 
     return (
-        <div className="w-full pb-24"> {/* Added padding bottom for scroll space */}
-            {filteredPosts.length === 0 ? (
+        <div className="w-full pb-24">
+            {blogPosts.length === 0 ? (
+                <div className="text-center py-20 bg-white/30 backdrop-blur-sm rounded-3xl border border-dashed border-gray-300">
+                    <div className="bg-gray-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <ArrowRight className="w-8 h-8 text-gray-400 rotate-[-45deg]" />
+                    </div>
+                    <h3 className="text-2xl font-bold text-gray-800 mb-2">Working on the first publication</h3>
+                    <p className="text-gray-500 max-w-sm mx-auto">
+                        Stay tuned! I'm currently crafting my first article. Check back soon for updates.
+                    </p>
+                </div>
+            ) : filteredPosts.length === 0 ? (
                 <div className="text-center text-gray-500 py-12">
                     <p className="text-xl">No posts found matching "{searchQuery}"</p>
                 </div>
