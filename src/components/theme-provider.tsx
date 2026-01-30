@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react"
+import { useLocation } from "react-router-dom"
 
 type Theme = "dark" | "light" | "system"
 
@@ -25,6 +26,7 @@ export function ThemeProvider({
     defaultTheme = "system",
     storageKey = "vite-ui-theme",
 }: ThemeProviderProps) {
+    const { pathname } = useLocation()
     const [theme, setTheme] = useState<Theme>(
         () => (localStorage.getItem(storageKey) as Theme) || defaultTheme
     )
@@ -33,6 +35,11 @@ export function ThemeProvider({
         const root = window.document.documentElement
 
         root.classList.remove("light", "dark")
+
+        // Only apply theme on blog pages
+        if (!pathname.includes('/blog')) {
+            return
+        }
 
         if (theme === "system") {
             const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
@@ -45,7 +52,7 @@ export function ThemeProvider({
         }
 
         root.classList.add(theme)
-    }, [theme])
+    }, [theme, pathname])
 
     const value = {
         theme,
