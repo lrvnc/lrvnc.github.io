@@ -9,6 +9,7 @@ import ContactInfo from '@/components/sections/Contact';
 import Posts from '@/components/sections/blog/Posts';
 import Notes from '@/components/sections/blog/Notes';
 import Videos from '@/components/sections/blog/Videos';
+import Code from '@/components/sections/blog/Code';
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -17,8 +18,9 @@ import FuturisticBackground from '@/components/common/FuturisticBackground';
 import { blogPosts } from '@/data/blog/posts';
 import { notesData } from '@/data/blog/notes';
 import { videosData } from '@/data/blog/videos';
+import { codeData } from '@/data/blog/code';
 
-type BlogSection = 'Posts' | 'Notes' | 'Videos';
+type BlogSection = 'Posts' | 'Notes' | 'Videos' | 'Code';
 
 const Blog = () => {
     const [activeSection, setActiveSection] = useState<BlogSection>('Posts');
@@ -48,6 +50,9 @@ const Blog = () => {
             case 'Videos':
                 videosData.forEach(video => tags.add(video.category));
                 break;
+            case 'Code':
+                codeData.forEach(project => project.tags.forEach(tag => tags.add(tag)));
+                break;
         }
         return Array.from(tags).sort();
     }, [activeSection]);
@@ -65,6 +70,7 @@ const Blog = () => {
             case 'Posts': return <Posts searchQuery={searchQuery} selectedTags={selectedTags} />;
             case 'Notes': return <Notes searchQuery={searchQuery} selectedTags={selectedTags} />;
             case 'Videos': return <Videos searchQuery={searchQuery} selectedTags={selectedTags} />;
+            case 'Code': return <Code searchQuery={searchQuery} selectedTags={selectedTags} />;
             default: return <Posts searchQuery={searchQuery} selectedTags={selectedTags} />;
         }
     };
