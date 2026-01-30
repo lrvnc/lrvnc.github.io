@@ -25,7 +25,7 @@ const Announcements = ({ searchQuery, selectedTags = [] }: AnnouncementsProps) =
     return (
         <div className="w-full pb-24">
             {filteredAnnouncements.length === 0 ? (
-                <div className="text-center text-gray-500 py-12">
+                <div className="text-center text-muted-foreground py-12">
                     <p className="text-xl">No announcements found matching "{searchQuery}"</p>
                 </div>
             ) : (
@@ -42,7 +42,7 @@ const Announcements = ({ searchQuery, selectedTags = [] }: AnnouncementsProps) =
                             transition={{ duration: 0.5, delay: index * 0.1 }}
                             whileHover={{ y: -5 }}
                         >
-                            <Card className={`border-none shadow-md hover:shadow-lg transition-all relative overflow-hidden h-full ${item.type === 'Major' ? 'bg-primary/5 border-primary/20 border' : 'bg-white'}`}>
+                            <Card className={`border-none shadow-md hover:shadow-lg transition-all relative overflow-hidden h-full ${item.type === 'Major' ? 'bg-primary/5 border-primary/20 border' : 'bg-card'}`}>
                                 {item.type === 'Major' && (
                                     <div className="absolute top-0 right-0 p-2">
                                         <Bell className="w-4 h-4 text-primary animate-bounce-subtle" />
@@ -51,12 +51,12 @@ const Announcements = ({ searchQuery, selectedTags = [] }: AnnouncementsProps) =
                                 <CardHeader className="pb-2">
                                     <div className="flex justify-between items-center mb-2">
                                         <Badge variant={item.type === 'Major' ? 'default' : 'secondary'}>{item.type}</Badge>
-                                        <span className="text-xs text-gray-400">{item.date}</span>
+                                        <span className="text-xs text-muted-foreground">{item.date}</span>
                                     </div>
                                     <CardTitle className="text-lg">{item.title}</CardTitle>
                                 </CardHeader>
                                 <CardContent>
-                                    <p className="text-sm text-gray-600">
+                                    <p className="text-sm text-muted-foreground">
                                         {item.content}
                                     </p>
                                 </CardContent>

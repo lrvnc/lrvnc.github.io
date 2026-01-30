@@ -97,20 +97,20 @@ const Blog = () => {
                             initial={{ opacity: 0, scale: 0.9 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ delay: 0.2, duration: 0.5 }}
-                            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-gray-200 shadow-sm mb-2 mx-auto"
+                            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-card border border-border shadow-sm mb-2 mx-auto"
                         >
-                            <Database className="w-4 h-4 text-black-400 fill-amber-400" />
-                            <span className="text-xs font-medium text-gray-600 uppercase tracking-wider">My personal database</span>
+                            <Database className="w-4 h-4 text-muted-foreground fill-amber-400" />
+                            <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">My personal database</span>
                         </motion.div>
 
                         <div className="space-y-4">
                             <h1 className="text-5xl md:text-7xl font-bold tracking-tighter text-balance">
-                                <span className="text-gray-900">Welcome to my </span>
-                                <span className="bg-clip-text text-transparent bg-gradient-to-r from-gray-900 via-gray-600 to-gray-900 animate-gradient-x">
+                                <span className="text-foreground">Welcome to my </span>
+                                <span className="bg-clip-text text-transparent bg-gradient-to-r from-foreground via-muted-foreground to-foreground animate-gradient-x">
                                     Blog
                                 </span>
                             </h1>
-                            <p className="text-xl md:text-2xl text-gray-500 font-light max-w-2xl mx-auto leading-relaxed text-balance">
+                            <p className="text-xl md:text-2xl text-muted-foreground font-light max-w-2xl mx-auto leading-relaxed text-balance">
                                 A collection of my thoughts, projects, notes, and whatever else I find interesting.
                             </p>
                         </div>
@@ -131,11 +131,11 @@ const Blog = () => {
                             className="w-full max-w-2xl flex gap-2"
                         >
                             <div className="relative flex-1">
-                                <Search className="absolute left-5 top-1/2 -translate-y-1/2 text-gray-400 w-6 h-6 z-10" />
+                                <Search className="absolute left-5 top-1/2 -translate-y-1/2 text-muted-foreground w-6 h-6 z-10" />
                                 <Input
                                     type="text"
                                     placeholder={`Search in ${activeSection}...`}
-                                    className="pl-14 h-14 text-lg bg-white/80 backdrop-blur-sm border-gray-200 focus:bg-white focus:ring-2 focus:ring-primary/20 transition-all shadow-lg rounded-2xl hover:shadow-xl"
+                                    className="pl-14 h-14 text-lg bg-background/80 backdrop-blur-sm border-border focus:bg-background focus:ring-2 focus:ring-primary/20 transition-all shadow-lg rounded-2xl hover:shadow-xl placeholder:text-muted-foreground/50"
                                     value={searchQuery}
                                     onChange={(e) => setSearchQuery(e.target.value)}
                                 />
@@ -145,7 +145,7 @@ const Blog = () => {
                                 <PopoverTrigger asChild>
                                     <Button
                                         variant="outline"
-                                        className="h-14 px-6 rounded-2xl border-gray-200 shadow-lg hover:shadow-xl bg-white text-gray-600 gap-2"
+                                        className="h-14 px-6 rounded-2xl border-border shadow-lg hover:shadow-xl bg-background text-muted-foreground hover:text-foreground gap-2"
                                     >
                                         <Filter className="w-5 h-5" />
                                         <span className="hidden sm:inline">Filter</span>

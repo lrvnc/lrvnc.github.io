@@ -27,17 +27,17 @@ const Posts = ({ searchQuery, selectedTags = [] }: PostsProps) => {
     return (
         <div className="w-full pb-24">
             {blogPosts.length === 0 ? (
-                <div className="text-center py-20 bg-white/30 backdrop-blur-sm rounded-3xl border border-dashed border-gray-300">
-                    <div className="bg-gray-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <ArrowRight className="w-8 h-8 text-gray-400 rotate-[-45deg]" />
+                <div className="text-center py-20 bg-card/30 backdrop-blur-sm rounded-3xl border border-dashed border-border">
+                    <div className="bg-muted w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <ArrowRight className="w-8 h-8 text-muted-foreground rotate-[-45deg]" />
                     </div>
-                    <h3 className="text-2xl font-bold text-gray-800 mb-2">Working on the first publication</h3>
-                    <p className="text-gray-500 max-w-sm mx-auto">
+                    <h3 className="text-2xl font-bold text-foreground mb-2">Working on the first publication</h3>
+                    <p className="text-muted-foreground max-w-sm mx-auto">
                         Stay tuned! I'm currently crafting my first article. Check back soon for updates.
                     </p>
                 </div>
             ) : filteredPosts.length === 0 ? (
-                <div className="text-center text-gray-500 py-12">
+                <div className="text-center text-muted-foreground py-12">
                     <p className="text-xl">No posts found matching "{searchQuery}"</p>
                 </div>
             ) : (
@@ -56,7 +56,7 @@ const Posts = ({ searchQuery, selectedTags = [] }: PostsProps) => {
                             whileHover={{ y: -5 }} // Subtle vertical lift on hover
                             className="h-full"
                         >
-                            <Card className="h-full border-none shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group cursor-pointer bg-white/50 backdrop-blur-sm flex flex-col">
+                            <Card className="h-full border-none shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group cursor-pointer bg-card/50 backdrop-blur-sm flex flex-col">
                                 <div className="h-48 overflow-hidden relative shrink-0">
                                     <img
                                         src={post.image}
@@ -66,7 +66,7 @@ const Posts = ({ searchQuery, selectedTags = [] }: PostsProps) => {
                                     <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
                                 </div>
                                 <CardHeader className="space-y-4">
-                                    <div className="flex items-center justify-between text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    <div className="flex items-center justify-between text-xs font-medium text-muted-foreground uppercase tracking-wider">
                                         <div className="flex items-center gap-2">
                                             <Calendar className="w-3 h-3" />
                                             <span>{post.date}</span>
@@ -86,7 +86,7 @@ const Posts = ({ searchQuery, selectedTags = [] }: PostsProps) => {
                                     </div>
                                 </CardHeader>
                                 <CardContent className="flex-1 flex flex-col justify-between">
-                                    <CardDescription className="text-base text-gray-600 line-clamp-3 mb-6">
+                                    <CardDescription className="text-base text-muted-foreground line-clamp-3 mb-6">
                                         {post.excerpt}
                                     </CardDescription>
                                     <div className="flex items-center text-primary font-medium group-hover:translate-x-1 transition-transform mt-auto">

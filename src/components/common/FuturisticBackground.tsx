@@ -40,8 +40,21 @@ const FuturisticBackground: React.FC = () => {
                 this.speedX = (this.x - centerX) / (canvas.width / 2) * 1.5;
                 this.opacity = Math.random() * 0.5 + 0.3;
 
-                // Futuristic color palette: cyan, purple, white
-                const colors = ['#06b6d4', '#a855f7', '#ffffff'];
+                // Futuristic color palette: cyan, purple, and foreground
+                const computedStyle = getComputedStyle(document.documentElement);
+                const foreground = computedStyle.getPropertyValue('--foreground').trim();
+                // We need to convert HSL/RGB var to hex or rgba for canvas if raw var is used, 
+                // but usually variables in this codebase seem to be HSL space separated values without commas 
+                // (based on index.css: 0 0% 100%).
+                // Canvas fillStyle doesn't support "0 0% 100%" directly.
+                // It's safer to use specific colors or simple logic:
+                // If the class 'dark' is present on document element, use white, else black.
+                const isDark = document.documentElement.classList.contains('dark');
+
+                const colors = isDark
+                    ? ['#06b6d4', '#a855f7', '#ffffff']
+                    : ['#06b6d4', '#a855f7', '#1f2937']; // Dark gray for light mode
+
                 this.color = colors[Math.floor(Math.random() * colors.length)];
             }
 
@@ -105,9 +118,20 @@ const FuturisticBackground: React.FC = () => {
             init();
         });
 
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.attributeName === 'class') {
+                    init();
+                }
+            });
+        });
+
+        observer.observe(document.documentElement, { attributes: true });
+
         return () => {
             cancelAnimationFrame(animationFrameId);
             window.removeEventListener('resize', resizeCanvas);
+            observer.disconnect();
         };
     }, []);
 
